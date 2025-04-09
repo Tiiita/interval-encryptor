@@ -1,19 +1,20 @@
+use colored::Colorize;
 use rand::random_range;
 
 const DISRUPTIONS: [char; 74] = [
     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
     'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b',
     'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
-    'v', 'w', 'x', 'y', 'z', // Not every symbol included, excluded the ugly ones
+    'v', 'w', 'x', 'y', 'z',
     '!', '/', '(', ')', '#', ':', '<', '>', '|', '^', '~', '@',
 ];
 fn main() {
-    let text = "Leni ist cool!";
-    println!("Text: {text}");
-    let text = encrypt(3, text);
-    println!("Interval-Verschlüsselt: {text}");
+    let text = "This is an example text";
+    println!("Text: {}", text.green());
+    let text = encrypt(2, text); //5-Interval makes it hardly human readable
+    println!("Encrypted: {}", text.red());
     let text = decrypt(text).unwrap();
-    println!("Interval-Entschlüsselt: {text}");
+    println!("Decrypted: {}", text.green());
 }
 
 fn encrypt(interval: u16, input: &str) -> String {
