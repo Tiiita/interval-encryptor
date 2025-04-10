@@ -1,4 +1,5 @@
 use colored::Colorize;
+use v2::EncryptorV2;
 
 const DISRUPTIONS: [char; 74] = [
     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
@@ -8,9 +9,17 @@ const DISRUPTIONS: [char; 74] = [
 ];
 
 mod v1;
+mod v2;
 fn main() {
+    // V2 Example
     let text = "This is an example text";
-    
+    println!("Original: {}", text.green());
+
+    let encrypted = EncryptorV2::encrypt(3, text);    
+    println!("Encrypted: {}", encrypted.red());
+
+    let decrypted = EncryptorV2::decrypt(encrypted);
+    println!("Decrypted: {}", decrypted.unwrap().green());
 }
 
 pub trait Encryptor {
